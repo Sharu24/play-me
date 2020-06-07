@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="./favicon.ico">
+
+</head>
+<div class="inst-container"><span><b>&#127932;</b>  Play Any One of the instruments below by Hovering the Mouse Over it  <b>&#127932;</b></span></div>
+</body>
+<script>
+let container = document.querySelector(".inst-container");
+let bajao = ["Piano","Guitar","Violin","Rhythm"];
+console.log(bajao);
+
+for (var i = 0; i< bajao.length; i++) {
+    let inst = document.createElement("div");
+    container.appendChild(inst);
+    container.classList.add("single-inst");
+
+    let img = document.createElement("img");
+    img.src = "./" + bajao[i] + ".png";
+    inst.appendChild(img);
+    img.classList.add("single-img","inst-leave");
+    
+
+    let sound = new Audio("./" + bajao[i] + ".wav");;
+
+    img.addEventListener("mouseenter", () => {
+        var promise = sound.play();
+        img.classList.remove("inst-leave"); 
+        img.classList.add("inst-play"); 
+    });
+    img.addEventListener("mouseleave", () => {
+        sound.pause();
+        sound.currentTime = 0;
+        img.classList.remove("inst-play"); 
+        img.classList.add("inst-leave"); 
+    });
+}
+
+</script>
+</html>
